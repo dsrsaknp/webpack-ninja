@@ -1,0 +1,9 @@
+#header {
+    text-decoration: underline;
+    color: grey;
+}
+
+:global(.button) {
+    background: navy;
+    color: white
+}
