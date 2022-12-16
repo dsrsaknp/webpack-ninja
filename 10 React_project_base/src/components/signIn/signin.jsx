@@ -5,10 +5,10 @@ import Inputbox from "../inputbox/inputbox.jsx";
 import "./signin.scss";
 import { useHistory } from "react-router-dom";
 
-const Signin = () => {
-  let history = useHistory();
+function Signin() {
+  const history = useHistory();
 
-  const loginToSite = () => {    
+  const loginToSite = () => {
     history.push("/movies");
   };
 
@@ -21,10 +21,10 @@ const Signin = () => {
         className="signin-btn"
         title="Sign In"
         onClick={loginToSite}
-      ></Button>
+      />
       {/* <Header></Header> */}
     </div>
   );
-};
+}
 
 export default Signin;

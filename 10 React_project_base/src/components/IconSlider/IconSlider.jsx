@@ -19,20 +19,20 @@ const movies = [
   "15.jpeg",
 ];
 
-const IconSlider = (props) => {
+function IconSlider(props) {
   const randomMovie = (items) => {
-    let movList = [];
+    const movList = [];
     for (let i = 0; i < items; i++) {
-      let counter = Math.round(Math.random() * 15);
-      let key = Date.now() * Math.random();
-      let mov = (
+      const counter = Math.round(Math.random() * 15);
+      const key = Date.now() * Math.random();
+      const mov = (
         <img
           key={key}
           src={require(`../../assets/${movies[counter]}`)}
           alt=""
         />
       );
-      movList.push(mov);      
+      movList.push(mov);
     }
     return movList;
   };
@@ -43,6 +43,6 @@ const IconSlider = (props) => {
       <div className="movies-container">{randomMovie(5)}</div>
     </div>
   );
-};
+}
 
 export default IconSlider;
