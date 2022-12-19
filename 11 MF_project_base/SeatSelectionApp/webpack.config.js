@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   mode: "development",
@@ -17,11 +18,19 @@ module.exports = {
     port: 3003,
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: "seatselection",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./SeatSelection": "./src/components/SeatSelectionContent/SeatSelectionContent.jsx"
+      },
+      shared: ["react", "react-dom"]
+    }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "index.html",
-    }),    
+    }),
   ],
   module: {
     rules: [

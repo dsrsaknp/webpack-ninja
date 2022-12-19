@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   mode: "development",
@@ -18,11 +19,19 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: "details",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./DetailsPage": "./src/components/DetailsContent/DetailsContent.jsx"
+      },
+      shared: ["react", "react-dom"]
+    }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "index.html",
-    }),    
+    }),
   ],
   module: {
     rules: [
